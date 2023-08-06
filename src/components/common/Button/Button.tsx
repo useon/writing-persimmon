@@ -63,7 +63,7 @@ const StyledButton = styled.button<ButtonStyleProps>`
   }
 `;
 
-function Button({
+const Button = ({
   type,
   color = 'default',
   radius = '30px',
@@ -73,13 +73,13 @@ function Button({
   children,
   weight = 'bold',
   url,
-}: ButtonProps) {
+}: ButtonProps) => {
   const props = { type, color, radius, width, height, padding, weight, url };
   return (
     <StyledButton {...props} className={[type, color].join(' ')}>
       {children}
     </StyledButton>
   );
-}
+};
 
 export default Button;
