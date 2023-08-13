@@ -7,7 +7,7 @@ import StyledComponentsRegistry from '@/lib/registry';
 const inter = Inter({ subsets: ['latin'] });
 
 const myFont = localFont({
-  src: '../../public/fonts/Pretendard-Regular.woff2',
+  src: '../../public/assets/fonts/Pretendard-Regular.woff2',
   display: 'swap',
 });
 
