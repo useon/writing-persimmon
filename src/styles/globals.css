@@ -25,6 +25,11 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
+a {
+	color: var(--dark-color);
+	text-decoration-line: none;
+}
+
 input, textarea, button {
 	font-family: inherit;
 }

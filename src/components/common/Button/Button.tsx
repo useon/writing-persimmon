@@ -13,6 +13,8 @@ interface ButtonStyleProps {
   padding?: string;
   weight?: string;
   url?: any;
+  size?: number;
+  onClick?: () => void;
 }
 
 interface ButtonProps extends ButtonStyleProps {
@@ -24,6 +26,7 @@ const StyledButton = styled.button<ButtonStyleProps>`
   padding: ${(props) => props.padding || '10px'};
   border-radius: ${(props) => props.radius};
   font-weight: ${(props) => props.weight};
+  font-size: ${(props) => (props.size ? `${props.size}rem` : '1rem')};
   cursor: pointer;
 
   &.default {
@@ -63,7 +66,7 @@ const StyledButton = styled.button<ButtonStyleProps>`
   }
 `;
 
-const Button = ({
+export const Button = ({
   type,
   color = 'default',
   radius = '30px',
@@ -73,13 +76,13 @@ const Button = ({
   children,
   weight = 'bold',
   url,
+  size,
+  onClick,
 }: ButtonProps) => {
-  const props = { type, color, radius, width, height, padding, weight, url };
+  const props = { type, color, radius, width, height, padding, weight, url, size };
   return (
-    <StyledButton {...props} className={[type, color].join(' ')}>
+    <StyledButton {...props} className={[type, color].join(' ')} onClick={onClick}>
       {children}
     </StyledButton>
   );
 };
-
-export default Button;
