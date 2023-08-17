@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
+import chevronDown from 'assets/images/chevron-down-icon.svg';
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
-import chevronDown from '../../../../public/assets/images/chevron-down-icon.svg';
 import { Button, SelectDropdoqMenu } from '@/components';
 import { dropdownAtom } from '@/stores/selectDropAtom';
 
