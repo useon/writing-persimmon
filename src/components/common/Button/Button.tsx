@@ -64,7 +64,7 @@ const StyledButton = styled.button<ButtonStyleProps>`
   }
 `;
 
-export const Button = ({
+const Button = ({
   type,
   color = 'default',
   radius = '30px',
@@ -84,3 +84,5 @@ export const Button = ({
     </StyledButton>
   );
 };
+
+export default Button;

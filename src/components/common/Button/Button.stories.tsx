@@ -1,4 +1,4 @@
-import { Button } from '.';
+import Button from './Button';
 import writeIcon from '../../../../public/assets/images/write-icon.svg';
 
 import type { Meta, StoryObj } from '@storybook/react';

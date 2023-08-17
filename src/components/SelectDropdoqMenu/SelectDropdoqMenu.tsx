@@ -23,7 +23,7 @@ const Text = styled.span`
   font-size: 1rem;
 `;
 
-export const SelectDropdoqMenu = () => {
+const SelectDropdoqMenu = () => {
   return (
     <Container id='select-drop'>
       <Text>오늘의 글감으로 글쓰기</Text>
@@ -31,3 +31,5 @@ export const SelectDropdoqMenu = () => {
     </Container>
   );
 };
+
+export default SelectDropdoqMenu;

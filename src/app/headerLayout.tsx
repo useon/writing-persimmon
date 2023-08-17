@@ -3,7 +3,7 @@ import React from 'react';
 
 import { useAtom } from 'jotai';
 
-import { Header } from '@/components';
+import Header from '@/components/common/Header/Header';
 import { dropdownAtom } from '@/stores/selectDropAtom';
 
 export default function HeaderLayout({ children }: { children: React.ReactNode }) {

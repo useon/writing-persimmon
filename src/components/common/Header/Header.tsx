@@ -6,7 +6,8 @@ import chevronDown from 'assets/images/chevron-down-icon.svg';
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
-import { Button, SelectDropdoqMenu } from '@/components';
+import Button from '../Button/Button';
+import SelectDropdoqMenu from '@/components/SelectDropdoqMenu/SelectDropdoqMenu';
 import { dropdownAtom } from '@/stores/selectDropAtom';
 
 const Nav = styled.nav`
@@ -49,7 +50,7 @@ const NavbarMenuItem = styled.li`
   }
 `;
 
-export const Header = () => {
+const Header = () => {
   const [show, setShow] = useAtom(dropdownAtom);
   const pathname = usePathname();
 
@@ -110,3 +111,5 @@ export const Header = () => {
     </Nav>
   );
 };
+
+export default Header;
