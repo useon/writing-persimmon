@@ -16,7 +16,7 @@ export default function HeaderLayout({ children }: { children: React.ReactNode }
     }
   };
   return (
-    <div onClick={(e: React.MouseEvent<HTMLDivElement>) => onClick(e)} id='test'>
+    <div onClick={(e: React.MouseEvent<HTMLDivElement>) => onClick(e)}>
       <Header />
       {children}
     </div>

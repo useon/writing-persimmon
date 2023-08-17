@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 interface ButtonStyleProps {
