@@ -10,46 +10,6 @@ import Button from '../Button/Button';
 import SelectDropdoqMenu from '@/components/SelectDropdoqMenu/SelectDropdoqMenu';
 import { dropdownAtom } from '@/stores/selectDropAtom';
 
-const Nav = styled.nav`
-  height: 70px;
-  margin: 0 auto;
-  border-bottom: 1px solid #ededed;
-  background: white;
-
-  .wrap {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 50px;
-  }
-`;
-
-const NavbarMenu = styled.ul<{ gap?: number }>`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: ${(props) => (props.gap ? `${props.gap}px` : '40px')};
-`;
-
-const NavbarMenuItem = styled.li`
-  font-weight: bold;
-  .active {
-    color: var(--main-color);
-  }
-  position: relative;
-
-  a {
-    padding: 10px 0px;
-  }
-
-  .link:hover {
-    color: var(--main-color);
-  }
-`;
-
 const Header = () => {
   const [show, setShow] = useAtom(dropdownAtom);
   const pathname = usePathname();
@@ -113,3 +73,43 @@ const Header = () => {
 };
 
 export default Header;
+
+const Nav = styled.nav`
+  height: 70px;
+  margin: 0 auto;
+  border-bottom: 1px solid #ededed;
+  background: white;
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0px 50px;
+  }
+`;
+
+const NavbarMenu = styled.ul<{ gap?: number }>`
+  display: flex;
+  align-items: center;
+  gap: ${(props) => (props.gap ? `${props.gap}px` : '40px')};
+  height: 100%;
+`;
+
+const NavbarMenuItem = styled.li`
+  position: relative;
+  font-weight: bold;
+  .active {
+    color: var(--main-color);
+  }
+
+  a {
+    padding: 10px 0px;
+  }
+
+  .link:hover {
+    color: var(--main-color);
+  }
+`;

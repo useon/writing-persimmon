@@ -19,51 +19,6 @@ interface ButtonProps extends ButtonStyleProps {
   children: React.ReactNode;
 }
 
-const StyledButton = styled.button<ButtonStyleProps>`
-  border: none;
-  padding: ${(props) => props.padding || '10px'};
-  border-radius: ${(props) => props.radius};
-  font-weight: ${(props) => props.weight};
-  font-size: ${(props) => (props.size ? `${props.size}rem` : '1rem')};
-  cursor: pointer;
-
-  &.default {
-    background-color: var(--main-color);
-    color: white;
-  }
-
-  &.sub {
-    background-color: white;
-    color: var(--main-color);
-  }
-
-  &.sub:hover {
-    background-color: #ebebeb;
-  }
-
-  &.write:before {
-    content: '';
-    display: block;
-    width: 15px;
-    height: 15px;
-    float: left;
-    margin: 0 6px 0 0;
-    background: ${(props) => `url(${props.url}) no-repeat`};
-    background-size: contain;
-  }
-
-  &.select:after {
-    content: '';
-    display: block;
-    width: 15px;
-    height: 15px;
-    float: right;
-    margin: 0 0 0 6px;
-    background: ${(props) => `url(${props.url}) no-repeat`};
-    background-size: contain;
-  }
-`;
-
 const Button = ({
   type,
   color = 'default',
@@ -86,3 +41,48 @@ const Button = ({
 };
 
 export default Button;
+
+const StyledButton = styled.button<ButtonStyleProps>`
+  padding: ${(props) => props.padding || '10px'};
+  border: none;
+  border-radius: ${(props) => props.radius};
+  font-weight: ${(props) => props.weight};
+  font-size: ${(props) => (props.size ? `${props.size}rem` : '1rem')};
+  cursor: pointer;
+
+  &.default {
+    background-color: var(--main-color);
+    color: white;
+  }
+
+  &.sub {
+    background-color: white;
+    color: var(--main-color);
+  }
+
+  &.sub:hover {
+    background-color: #ebebeb;
+  }
+
+  &.write:before {
+    display: block;
+    float: left;
+    width: 15px;
+    height: 15px;
+    margin: 0 6px 0 0;
+    background: ${(props) => `url(${props.url}) no-repeat`};
+    background-size: contain;
+    content: '';
+  }
+
+  &.select:after {
+    display: block;
+    float: right;
+    width: 15px;
+    height: 15px;
+    margin: 0 0 0 6px;
+    background: ${(props) => `url(${props.url}) no-repeat`};
+    background-size: contain;
+    content: '';
+  }
+`;
