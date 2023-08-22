@@ -111,7 +111,7 @@ export default function Home() {
     },
   ];
 
-  const [data, setData] = useState(initalData);
+  const [postPreviewData, setPostPreviewData] = useState(initalData);
   const [filterType, setFilterType] = useState('popularity');
 
   const handleFilterClick = (type: string) => {
@@ -124,7 +124,6 @@ export default function Home() {
     }
   };
 
-  console.log(data);
   return (
     <Container>
       <TopicPart type='today' topic='내 의자는 밤에 뭘 할까?' />
@@ -146,7 +145,7 @@ export default function Home() {
             댓글순
           </FilterText>
         </FilterBox>
-        <PostPreviewList data={data} />
+        <PostPreviewList data={postPreviewData} />
       </div>
     </Container>
   );

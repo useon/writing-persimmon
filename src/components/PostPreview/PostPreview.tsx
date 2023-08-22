@@ -29,24 +29,24 @@ const PostPreview = ({ issue, title, user_id, date, view, content, like, comment
             <span>{issue === 'today' ? '오늘의' : '자유'} 주제</span>
           </Tag>
         ) : null}
-        <PostInfoWrap>
+        <PostInfoWrapper>
           <div>
             <span className='id'>{user_id}</span>
             <span className='gray-text'>{elapsedTime}</span>
           </div>
           <span className='gray-text'>조회수 {view}회</span>
-        </PostInfoWrap>
+        </PostInfoWrapper>
       </TitleArea>
       <Content>{content}</Content>
       <div className='post-comment'>
-        <ReactionWrap>
+        <ReactionWrapper>
           <Image src={likeIcon.src} alt='like' width={15} height={15} />
           <span>{like}</span>
-        </ReactionWrap>
-        <ReactionWrap>
+        </ReactionWrapper>
+        <ReactionWrapper>
           <Image src={commentIcon.src} alt='comment' width={15} height={15} />
           <span>{comment}</span>
-        </ReactionWrap>
+        </ReactionWrapper>
       </div>
     </Container>
   );
@@ -69,16 +69,9 @@ const Container = styled.div`
     display: flex;
     gap: 0px 13px;
   }
-
-  .mark-wrap {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 20px;
-  }
 `;
 
-const ReactionWrap = styled.div`
+const ReactionWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -97,7 +90,7 @@ const TitleArea = styled.div`
   margin-bottom: 50px;
 `;
 
-const PostInfoWrap = styled.div`
+const PostInfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   .id {

@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <Nav>
-      <div className='wrap'>
+      <div className='wrapper'>
         <NavbarMenu>
           <NavbarMenuItem>
             <Link href='/'>글감이</Link>
@@ -80,7 +80,7 @@ const Nav = styled.nav`
   border-bottom: 1px solid #ededed;
   background: white;
 
-  .wrap {
+  .wrapper {
     display: flex;
     align-items: center;
     flex-direction: row;
