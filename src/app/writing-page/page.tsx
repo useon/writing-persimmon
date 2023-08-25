@@ -25,9 +25,9 @@ const WritingPage = () => {
 export default WritingPage;
 
 const Container = styled.div`
-  height: 880px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  height: 880px;
 `;
 
 const TextEditorArea = styled.div`

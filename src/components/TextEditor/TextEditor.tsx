@@ -105,8 +105,8 @@ const TitleArea = styled.div`
 
   .title-input {
     width: 100%;
-    font-size: 2.5rem;
     border-style: none;
+    font-size: 2.5rem;
     outline: none;
   }
 `;
