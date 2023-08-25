@@ -17,7 +17,7 @@ const WritingPreview = ({ writingData }: Props) => {
 
 export default WritingPreview;
 
-const TitleArea = styled.h1`
+const TitleArea = styled.div`
   padding: 20px;
   font-size: 2.5rem;
 `;
