@@ -18,6 +18,6 @@ const WritingPreview = ({ writingData }: Props) => {
 export default WritingPreview;
 
 const TitleArea = styled.div`
-  padding: 20px;
+  padding: 20px 0 20px 0;
   font-size: 2.5rem;
 `;
