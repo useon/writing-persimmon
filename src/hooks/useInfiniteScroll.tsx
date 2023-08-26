@@ -1,28 +1,70 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 
+import { supabase } from '@/supabase';
 import { PostType } from '@/types/postType';
 
 interface Props {
-  data: PostType[];
-  posts: PostType[];
-  setPosts: React.Dispatch<React.SetStateAction<PostType[]>>;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  topic_id: number;
+  setIsInView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const getPostList = (data: PostType[], page: number): PostType[] => {
-  return data.filter((post: PostType) => post.page === page);
-};
+export const useInfiniteScroll = ({ topic_id, setIsInView }: Props) => {
+  const PAGE_COUNT = 3;
+  const [offset, setOffset] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadedPosts, setLoadedPosts] = useState<PostType[]>([]);
+  const [isLast, setLast] = useState(false);
 
-export const useInfiniteScroll = ({ data, posts, setPosts, page, setPage }: Props) => {
-  const handleScroll = useCallback((): void => {
-    const { innerHeight } = window;
-    const { scrollHeight } = document.body;
-    const { scrollTop } = document.documentElement;
-    if (Math.ceil(scrollTop + innerHeight) >= scrollHeight) {
-      setPosts(posts.concat(getPostList(data, page + 1)));
-      setPage((prevPage: number) => prevPage + 1);
-    }
-  }, [data, page, posts, setPage, setPosts]);
-  return handleScroll;
+  const fetchPosts = useCallback(
+    async (offset: number) => {
+      const from = offset * PAGE_COUNT;
+      const to = from + PAGE_COUNT - 1;
+      const { data, error } = await supabase!
+        .from('post')
+        .select('*, comments: comment(*)')
+        .eq('topic_id', topic_id)
+        .range(from, to);
+
+      if (error) {
+        return [];
+      } else {
+        return data;
+      }
+    },
+    [topic_id],
+  );
+
+  const loadMorePost = useCallback(
+    async (offset: number) => {
+      setIsLoading(true);
+      setOffset((prev) => prev + 1);
+      const newPosts = await fetchPosts(offset);
+      if (newPosts.length > 0) {
+        setLoadedPosts((prevPosts: any) => [...prevPosts, ...newPosts]);
+      } else {
+        setLast(true);
+      }
+      setIsLoading(false);
+      setIsInView(false);
+    },
+    [fetchPosts, setIsInView],
+  );
+
+  useEffect(() => {
+    const getPost = async () => {
+      const posts = await fetchPosts(0);
+      console.log(posts);
+      setLoadedPosts(posts);
+    };
+    getPost();
+  }, [fetchPosts]);
+
+  const scrollInformation = {
+    offset,
+    isLoading,
+    loadedPosts,
+    isLast,
+  };
+
+  return [scrollInformation, loadMorePost] as const;
 };

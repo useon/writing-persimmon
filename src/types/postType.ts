@@ -1,12 +1,24 @@
 export type PostType = {
-  id: number;
+  id?: number;
   issue?: 'today' | 'free';
   title: string;
   user_id: string;
-  date: string;
-  view: number;
+  created_at: string;
+  view?: number;
   content: string;
   like: number;
-  page: number;
-  comment: number;
+  page?: number;
+  comment_id?: number;
+  comments: CommentType[] | {}[];
+  topic?: string;
+  topic_id?: number;
+  type?: string;
+};
+
+export type CommentType = {
+  id: number;
+  create_at: string;
+  comment_user_id: string;
+  comment_content: string;
+  post_id: number;
 };
