@@ -1,30 +1,42 @@
 import Image from 'next/image';
 import React from 'react';
 
-import commentIcon from 'assets/images/comment-icon.svg';
-import likeIcon from 'assets/images/like-icon.svg';
 import styled from 'styled-components';
 
+import { PostType } from '@/types/postType';
 import { calculateHoursAgo } from '@/utils/calculateHoursAgo';
+import commentIcon from 'assets/images/comment-icon.svg';
+import likeIcon from 'assets/images/like-icon.svg';
 
 interface Props {
   issue?: 'today' | 'free';
   title: string;
   user_id: string;
-  date: string;
+  created_at: string;
   view: number;
   content: string;
   like: number;
-  comment: number;
+  comments: number;
+  type: string;
 }
 
-const PostPreview = ({ issue, title, user_id, date, view, content, like, comment }: Props) => {
-  const elapsedTime = calculateHoursAgo(date);
+const PostPreview = ({
+  issue,
+  title,
+  user_id,
+  created_at,
+  view,
+  content,
+  like,
+  comments,
+  type,
+}: PostType) => {
+  const elapsedTime = calculateHoursAgo(created_at);
   return (
     <Container>
       <TitleArea>
         <Title>{title}</Title>
-        {issue ? (
+        {type === 'free' ? (
           <Tag issue={issue}>
             <span>{issue === 'today' ? '오늘의' : '자유'} 주제</span>
           </Tag>
@@ -45,7 +57,7 @@ const PostPreview = ({ issue, title, user_id, date, view, content, like, comment
         </ReactionWrapper>
         <ReactionWrapper>
           <Image src={commentIcon.src} alt='comment' width={15} height={15} />
-          <span>{comment}</span>
+          <span>{comments.length}</span>
         </ReactionWrapper>
       </div>
     </Container>
@@ -59,7 +71,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: 215px;
   padding-top: 25px;
   padding-bottom: 50px;
   border-bottom: 1px solid #d4d4d4;
