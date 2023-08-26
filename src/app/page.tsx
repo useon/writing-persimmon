@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { getTopicApi } from './apis/topic/get-topic-api';
 import PostPreviewsSection from '@/components/PostPreviewsSection/PostPreviewsSection';
 import TopicPart from '@/components/TopicPart/TopicPart';
-import { supabase } from '@/supabase';
 
 const today = new Date();
 const tomorrow = new Date();
@@ -11,17 +11,7 @@ const currentArray = [today.getFullYear(), today.getMonth() + 1, today.getDate()
 const tomorrowArray = [tomorrow.getFullYear(), tomorrow.getMonth() + 1, tomorrow.getDate()];
 
 const getTopic = async () => {
-  const { data: topic, error } = await supabase!
-    .from('topic')
-    .select('*')
-    .gte('created_at', currentArray.join('-'))
-    .lt('created_at', tomorrowArray.join('-'));
-
-  if (error) {
-    return [];
-  } else {
-    return topic;
-  }
+  return await getTopicApi(currentArray, tomorrowArray);
 };
 
 // eslint-disable-next-line @next/next/no-async-client-component

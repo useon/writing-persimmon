@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 
-import { supabase } from '@/supabase';
+import { getPostByTopicIdApi } from '@/app/apis/post/get-post-by-topic-id-api';
 import { PostType } from '@/types/postType';
 
 interface Props {
@@ -19,17 +19,7 @@ export const useInfiniteScroll = ({ topic_id, setIsInView }: Props) => {
     async (offset: number) => {
       const from = offset * PAGE_COUNT;
       const to = from + PAGE_COUNT - 1;
-      const { data, error } = await supabase!
-        .from('post')
-        .select('*, comments: comment(*)')
-        .eq('topic_id', topic_id)
-        .range(from, to);
-
-      if (error) {
-        return [];
-      } else {
-        return data;
-      }
+      return await getPostByTopicIdApi(from, to, topic_id);
     },
     [topic_id],
   );
