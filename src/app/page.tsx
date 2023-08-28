@@ -17,12 +17,13 @@ const getTopic = async () => {
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function Home() {
   const topic = await getTopic();
-  let { id, name } = topic[0];
+  let id = 0;
+  let name = '';
 
   // topic이 안받아와질 때 예외처리 임시
-  if (topic.length === 0) {
-    id = 0;
-    name = '';
+  if (topic.length !== 0) {
+    id = topic[0].id;
+    name = topic[0].name;
   }
 
   return (
