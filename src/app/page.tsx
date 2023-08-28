@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getTopicApi } from './apis/topic/get-topic-api';
+import { getTopicApi } from '@/apis/topic/get-topic-api';
 import PostPreviewsSection from '@/components/PostPreviewsSection/PostPreviewsSection';
 import TopicPart from '@/components/TopicPart/TopicPart';
 

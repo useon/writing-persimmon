@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 
-import { getPostByTopicIdApi } from '@/app/apis/post/get-post-by-topic-id-api';
+import { getPostByTopicIdApi } from '@/apis/post/get-post-by-topic-id-api';
 import { PostType } from '@/types/postType';
 
 interface Props {
