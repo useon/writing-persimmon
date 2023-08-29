@@ -3,12 +3,9 @@ import React from 'react';
 import { getTopicApi } from '@/apis/topic/get-topic-api';
 import PostPreviewsSection from '@/components/PostPreviewsSection/PostPreviewsSection';
 import TopicPart from '@/components/TopicPart/TopicPart';
+import { getTodayAndTomorrow } from '@/utils/getTodayAndTomorrow';
 
-const today = new Date();
-const tomorrow = new Date();
-tomorrow.setDate(today.getDate() + 1);
-const currentArray = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
-const tomorrowArray = [tomorrow.getFullYear(), tomorrow.getMonth() + 1, tomorrow.getDate()];
+const [currentArray, tomorrowArray] = getTodayAndTomorrow();
 
 const getTopic = async () => {
   return await getTopicApi(currentArray, tomorrowArray);
@@ -28,7 +25,7 @@ export default async function Home() {
 
   return (
     <>
-      <PostPreviewsSection topic_id={id}>
+      <PostPreviewsSection topicId={id}>
         <TopicPart type='today' topic={name} />
       </PostPreviewsSection>
     </>
