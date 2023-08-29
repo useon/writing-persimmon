@@ -12,7 +12,6 @@ export type PostType = {
   comments: CommentType[] | {}[];
   topic?: string;
   topic_id?: number;
-  type?: string;
 };
 
 export type CommentType = {
