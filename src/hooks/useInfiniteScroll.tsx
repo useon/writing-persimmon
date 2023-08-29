@@ -1,10 +1,11 @@
 import React, { useCallback, useState, useEffect } from 'react';
 
+import { getPostApi } from '@/apis/post/get-post-api';
 import { getPostByTopicIdApi } from '@/apis/post/get-post-by-topic-id-api';
 import { PostType } from '@/types/postType';
 
 interface Props {
-  topicId: number;
+  topicId?: number;
   setIsInView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -19,7 +20,11 @@ export const useInfiniteScroll = ({ topicId, setIsInView }: Props) => {
     async (offset: number) => {
       const from = offset * PAGE_COUNT;
       const to = from + PAGE_COUNT - 1;
-      return await getPostByTopicIdApi(from, to, topicId);
+      if (topicId) {
+        return await getPostByTopicIdApi(from, to, topicId!);
+      } else {
+        return await getPostApi(from, to);
+      }
     },
     [topicId],
   );
