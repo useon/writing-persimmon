@@ -1,6 +1,5 @@
-import writeIcon from 'assets/images/write-icon.svg';
-
 import Button from './Button';
+import writeIcon from 'assets/images/write-icon.svg';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

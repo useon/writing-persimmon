@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
 
-import writeIcon from 'assets/images/write-icon.svg';
 import styled from 'styled-components';
 
 import Button from '../common/Button/Button';
+import writeIcon from 'assets/images/write-icon.svg';
 
 interface Props {
   type: 'today' | 'last';

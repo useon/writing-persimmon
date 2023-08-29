@@ -13,10 +13,11 @@ export const Default: Story = {
   args: {
     title: '제목',
     user_id: 'user_id',
-    date: '2023-08-19',
+    created_at: '2023-08-19',
     view: 0,
     content: '본문',
     like: 0,
+    comments: [],
   },
 };
 

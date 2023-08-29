@@ -40,7 +40,7 @@ const TextEditor = ({ writingData, setWritingData }: Props) => {
       </TitleWrapper>
       <div>
         <Editor
-          apiKey={process.env.EDITOR_API_KEY}
+          apiKey={process.env.NEXT_PUBLIC_EDITOR_API_KEY}
           onEditorChange={(editor) => setWritingData({ ...writingData, body: editor })}
           initialValue=''
           init={{
