@@ -9,18 +9,19 @@ import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 
 interface Props {
   children?: React.ReactNode;
-  topic_id?: number;
+  topicId?: number;
 }
 
-const PostPreviewsSection = ({ children, topic_id }: Props) => {
+const PostPreviewsSection = ({ children, topicId }: Props) => {
   const [filterType, setFilterType] = useState('popularity');
   const [isInView, setIsInView] = useState(false);
   const [scrollInformation, loadMorePost] = useInfiniteScroll({
-    topic_id: topic_id ? topic_id : 0,
+    topicId: topicId ? topicId : 0,
     setIsInView: setIsInView,
   });
-  const type = children ? 'today' : 'free';
-  const props = { type, isInView, setIsInView, scrollInformation, loadMorePost };
+
+  const type = children ? 'topic' : ('all' as 'topic' | 'all');
+  const props = { type: type, isInView, setIsInView, scrollInformation, loadMorePost };
 
   const handleFilterClick = (type: string) => {
     if (type === 'popularity') {

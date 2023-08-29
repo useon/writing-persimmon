@@ -7,7 +7,7 @@ import PostPreview from '../PostPreview/PostPreview';
 import { PostType } from '@/types/postType';
 
 interface Props {
-  type: string;
+  type: 'all' | 'topic';
   isInView: boolean;
   setIsInView: React.Dispatch<React.SetStateAction<boolean>>;
   scrollInformation: ScrollInformationType;
@@ -63,7 +63,7 @@ const PostPreviewList = ({
           title={post.title}
           user_id={post.user_id}
           created_at={post.created_at}
-          view={post.view}
+          view={post.view!}
           content={post.content}
           like={post.like}
           comments={post.comments}

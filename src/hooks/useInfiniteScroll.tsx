@@ -4,11 +4,11 @@ import { getPostByTopicIdApi } from '@/apis/post/get-post-by-topic-id-api';
 import { PostType } from '@/types/postType';
 
 interface Props {
-  topic_id: number;
+  topicId: number;
   setIsInView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const useInfiniteScroll = ({ topic_id, setIsInView }: Props) => {
+export const useInfiniteScroll = ({ topicId, setIsInView }: Props) => {
   const PAGE_COUNT = 3;
   const [offset, setOffset] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,9 +19,9 @@ export const useInfiniteScroll = ({ topic_id, setIsInView }: Props) => {
     async (offset: number) => {
       const from = offset * PAGE_COUNT;
       const to = from + PAGE_COUNT - 1;
-      return await getPostByTopicIdApi(from, to, topic_id);
+      return await getPostByTopicIdApi(from, to, topicId);
     },
-    [topic_id],
+    [topicId],
   );
 
   const loadMorePost = useCallback(

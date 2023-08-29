@@ -3,7 +3,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { PostType } from '@/types/postType';
+import { CommentType } from '@/types/postType';
 import { calculateHoursAgo } from '@/utils/calculateHoursAgo';
 import commentIcon from 'assets/images/comment-icon.svg';
 import likeIcon from 'assets/images/like-icon.svg';
@@ -16,8 +16,8 @@ interface Props {
   view: number;
   content: string;
   like: number;
-  comments: number;
-  type: string;
+  comments: CommentType[] | {}[];
+  type?: 'all' | 'topic';
 }
 
 const PostPreview = ({
@@ -30,13 +30,13 @@ const PostPreview = ({
   like,
   comments,
   type,
-}: PostType) => {
+}: Props) => {
   const elapsedTime = calculateHoursAgo(created_at);
   return (
     <Container>
       <TitleArea>
         <Title>{title}</Title>
-        {type === 'free' ? (
+        {type === 'all' ? (
           <Tag issue={issue}>
             <span>{issue === 'today' ? '오늘의' : '자유'} 주제</span>
           </Tag>
