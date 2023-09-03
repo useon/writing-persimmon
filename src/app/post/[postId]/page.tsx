@@ -1,64 +1,48 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import styled from 'styled-components';
 
-const PostPage = () => {
-  return (
-    <Main>
-      <Container>
-        <Header>
-          <TitleWrapper>
-            <H1>세상의 바닷물이 달콤해진다면</H1>
-            <TodayTitle>바닷물이 달콤하다면?</TodayTitle>
-          </TitleWrapper>
-          <Info>
-            <AuthorName>testId</AuthorName>
-            <AuthorTime>2023년 8월 31일</AuthorTime>
-          </Info>
-          <TagWrapper>
-            <Tag>오늘의 주제</Tag>
-          </TagWrapper>
-        </Header>
-        <Content>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptatem fugit,
-            dignissimos facere quis consequuntur pariatur ducimus adipisci culpa sed provident
-            quibusdam praesentium? Nesciunt ducimus totam veniam amet, quas officiis?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptatem fugit,
-            dignissimos facere quis consequuntur pariatur ducimus adipisci culpa sed provident
-            quibusdam praesentium? Nesciunt ducimus totam veniam amet, quas officiis?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptatem fugit,
-            dignissimos facere quis consequuntur pariatur ducimus adipisci culpa sed provident
-            quibusdam praesentium? Nesciunt ducimus totam veniam amet, quas officiis?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptatem fugit,
-            dignissimos facere quis consequuntur pariatur ducimus adipisci culpa sed provident
-            quibusdam praesentium? Nesciunt ducimus totam veniam amet, quas officiis?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptatem fugit,
-            dignissimos facere quis consequuntur pariatur ducimus adipisci culpa sed provident
-            quibusdam praesentium? Nesciunt ducimus totam veniam amet, quas officiis?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptatem fugit,
-            dignissimos facere quis consequuntur pariatur ducimus adipisci culpa sed provident
-            quibusdam praesentium? Nesciunt ducimus totam veniam amet, quas officiis?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptatem fugit,
-            dignissimos facere quis consequuntur pariatur ducimus adipisci culpa sed provident
-            quibusdam praesentium? Nesciunt ducimus totam veniam amet, quas officiis?
-          </p>
-        </Content>
-      </Container>
-    </Main>
-  );
+import { getPostByIdApi } from '@/apis/post/get-post-by-id-api';
+import { calculateHoursAgo } from '@/utils/calculateHoursAgo';
+
+const PostPage = ({ params }: { params: { postId: number } }) => {
+  const [postData, setPostData] = useState<any>();
+
+  useEffect(() => {
+    const postId = Number(params.postId);
+    getPost(postId);
+  }, []);
+
+  const getPost = async (postId: number) => {
+    const postData = await getPostByIdApi(postId);
+    setPostData(postData[0]);
+  };
+
+  if (postData !== undefined) {
+    const elapsedTime = calculateHoursAgo(postData.created_at);
+    return (
+      <Main>
+        <Container>
+          <Header>
+            <TitleWrapper>
+              <H1>{postData.title}</H1>
+              <TodayTitle>{postData.topic}</TodayTitle>
+            </TitleWrapper>
+            <Info>
+              <AuthorName>{postData.user_id}</AuthorName>
+              <AuthorTime>{elapsedTime}</AuthorTime>
+            </Info>
+            <TagWrapper>
+              <Tag>{postData.issue === 'today' ? '오늘의 주제' : '자유 주제'}</Tag>
+            </TagWrapper>
+          </Header>
+          <Content>{postData.content}</Content>
+        </Container>
+      </Main>
+    );
+  }
 };
 
 export default PostPage;

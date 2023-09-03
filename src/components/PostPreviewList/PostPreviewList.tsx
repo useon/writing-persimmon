@@ -60,6 +60,7 @@ const PostPreviewList = ({
       {scrollInformation.loadedPosts.map((post: PostType) => (
         <PostPreview
           key={post.id}
+          id={post.id!}
           title={post.title}
           user_id={post.user_id}
           created_at={post.created_at}
