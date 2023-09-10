@@ -1,0 +1,9 @@
+{
+    "deno.enable": true,
+    "deno.unstable": false,
+    "deno.enablePaths":[
+        "./supabase/functions/cron-schedule",
+        "./src/apis/topic/create-topic-api",
+    ],
+    "deno.importMap": "./supabase/functions/import_map.json"
+}
