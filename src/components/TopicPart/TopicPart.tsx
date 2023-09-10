@@ -1,18 +1,35 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
+import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
 import Button from '../common/Button/Button';
+import { getTopicApi } from '@/apis/topic/get-topic-api';
+import { topicIdAtom } from '@/stores/topicIdAtom';
+import { getTodayAndTomorrow } from '@/utils/getTodayAndTomorrow';
 import writeIcon from 'assets/images/write-icon.svg';
 
 interface Props {
   type: 'today' | 'last';
-  topic: string;
 }
 
-const TopicPart = ({ type, topic }: Props) => {
+const TopicPart = ({ type }: Props) => {
+  const [topic, setTopic] = useState('');
+  const [topicId, setTopicId] = useAtom(topicIdAtom);
+  const [currentArray, tomorrowArray] = getTodayAndTomorrow();
+
+  const getTopic = useCallback(async () => {
+    const getTopic = await getTopicApi(currentArray, tomorrowArray);
+    setTopic(getTopic[0] ? getTopic[0].name : '');
+    setTopicId(getTopic[0] ? getTopic[0].id : 0);
+  }, [currentArray, setTopicId, tomorrowArray]);
+
+  useEffect(() => {
+    getTopic();
+  }, [getTopic]);
+
   return (
     <Container>
       <span className='topic-type '>{type === 'today' ? '오늘의 ' : ''}글감</span>
