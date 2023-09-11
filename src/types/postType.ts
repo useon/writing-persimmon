@@ -16,7 +16,7 @@ export type PostType = {
 
 export type CommentType = {
   id: number;
-  create_at: string;
+  created_at: string;
   comment_user_id: string;
   comment_content: string;
   post_id: number;
