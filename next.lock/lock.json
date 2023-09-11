@@ -1,0 +1,16 @@
+{
+  "https://deno.land/std/dotenv/mod.ts": { "resolved": "https://deno.land/std@0.201.0/dotenv/mod.ts", "integrity": "sha512-+Q+j0IiS/srs1zZpPdDNlY778RTmIz50JwrucbdvBNee9gLOOj3lVnyBUAc2KbLVYkJrN+Rho0+mO1FkDgAQyg==", "contentType": "application/typescript; charset=utf-8" },
+  "https://deno.land/std@0.201.0/dotenv/mod.ts": { "integrity": "sha512-+Q+j0IiS/srs1zZpPdDNlY778RTmIz50JwrucbdvBNee9gLOOj3lVnyBUAc2KbLVYkJrN+Rho0+mO1FkDgAQyg==", "contentType": "application/typescript; charset=utf-8" },
+  "https://esm.sh/@supabase/supabase-js@2": { "resolved": "https://esm.sh/@supabase/supabase-js@2.33.1", "integrity": "sha512-oF8OTzQ8lUKsOAmg+5+mdvOqyFDZlSZv1KUwIcMQEhPS4oc/VqPuQedIxbkZ0qkPwwg20+Cj2zD5nN2dx/hhyg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v132/@supabase/functions-js@2.1.4/esnext/functions-js.mjs": { "integrity": "sha512-hME4475UkLLp82o/X/9sCpy1DBXrAecdkubA+Rw7stqV1FzsodOzW+N+c5Up7Hdn4yghGNH5IbrIqqtCAFTVOg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v132/@supabase/gotrue-js@2.48.1/esnext/gotrue-js.mjs": { "integrity": "sha512-3SIU24Pgb5xxdRYV/yBY18i9p/I1ABmWM7njj43aP+067jrUlF0hhZ4XyejYDGBo+b+g4lMy8ynbCW9GLXKX+A==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v132/@supabase/node-fetch@2.6.14/esnext/node-fetch.mjs": { "integrity": "sha512-uRfOHe5jOFk3lOaTjXbVx2VrhpTDLTdHwadVGfoyZc+YcsLwEvnmQQYypOmHSOw2zpo/oLEvgF3ybqte4/shTg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v132/@supabase/postgrest-js@1.8.4/esnext/postgrest-js.mjs": { "integrity": "sha512-So9p8XTWx/wVwzCRctN1N1uv327Gvxz1YcsqICJRilBsFxStgfvg8heUqXnYz5PoDbdqYa4zvU1jNocPb3EwEw==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v132/@supabase/realtime-js@2.7.4/esnext/realtime-js.mjs": { "integrity": "sha512-cx1F6qr152nhfooOTBayav/Rq1aom/MungNLPaT6MFPdWixvFe+wUIvMAFDE7KtnfYuDaRtMneAV3VMASNWipg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v132/@supabase/storage-js@2.5.3/esnext/storage-js.mjs": { "integrity": "sha512-xpXFIsKpuJLKpTn+Q8VMoVJJi1sOdtQp16LZPnideXsGG2+9xD4Jc8IGewLnMdFrX8sGPAE0w8ZA9F3wVQWCdw==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v132/@supabase/supabase-js@2.33.1/esnext/supabase-js.mjs": { "integrity": "sha512-wT48NUILWT2JD9OW5zmBj1dxS1Cw6+P6oy6jVMoG1NHgR+2gXUhpBjllgOVo+PQwua3irHL5x4A6xYNfh1G8Yw==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v132/cross-fetch@3.1.8/esnext/cross-fetch.mjs": { "integrity": "sha512-A6ZfA0ClopWnFZ8M++X5jOp+4Cz+BDS14+GZk4LUBea+FA1OAIV44C6itKjEaPPIBvO63SxSJj05tgnxdfUnXw==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v132/es5-ext@0.10.62/esnext/global.js": { "integrity": "sha512-y4HW1BrTn5Og4kCf6KwqaiR+59HYrm75U3TXbYz9rgD/ctB8jVCGUWYbNjJj8idbIOgELJOUYbJy7UZaiI/y7g==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v132/websocket@1.0.34/esnext/websocket.mjs": { "integrity": "sha512-QuOZnD78xGc0BrvPEdScZ+1aH0axAOk+Dk0kgHGNHGybVoYR5lmJv3ho2KSDVprMthCKdmPO3/i1FNkvWhiotQ==", "contentType": "application/javascript; charset=utf-8" },
+  "version": 1
+}

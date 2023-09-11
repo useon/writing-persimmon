@@ -2,19 +2,22 @@
 
 import React, { useState } from 'react';
 
+import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
 import PostPreviewList from '../PostPreviewList/PostPreviewList';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import { topicIdAtom } from '@/stores/topicIdAtom';
 
 interface Props {
   children?: React.ReactNode;
-  topicId?: number;
 }
 
-const PostPreviewsSection = ({ children, topicId }: Props) => {
+const PostPreviewsSection = ({ children }: Props) => {
   const [filterType, setFilterType] = useState('popularity');
   const [isInView, setIsInView] = useState(false);
+  const [topicId, setTopicId] = useAtom(topicIdAtom);
+
   const [scrollInformation, loadMorePost] = useInfiniteScroll({
     topicId: topicId ? topicId : 0,
     setIsInView: setIsInView,
