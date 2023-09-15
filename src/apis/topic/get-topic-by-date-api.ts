@@ -1,6 +1,6 @@
 import { supabase } from '@/supabase';
 
-export const getTopicApi = async (currentArray: number[], tomorrowArray: number[]) => {
+export const getTopicByDateApi = async (currentArray: number[], tomorrowArray: number[]) => {
   const { data: topic, error } = await supabase!
     .from('topic')
     .select('*')

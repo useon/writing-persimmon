@@ -6,7 +6,7 @@ import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
 import Button from '../common/Button/Button';
-import { getTopicApi } from '@/apis/topic/get-topic-api';
+import { getTopicByDateApi } from '@/apis/topic/get-topic-by-date-api';
 import { topicIdAtom } from '@/stores/topicIdAtom';
 import { getTodayAndTomorrow } from '@/utils/getTodayAndTomorrow';
 import writeIcon from 'assets/images/write-icon.svg';
@@ -21,8 +21,8 @@ const TopicPart = ({ type }: Props) => {
   const [currentArray, tomorrowArray] = getTodayAndTomorrow();
 
   const getTopic = useCallback(async () => {
-    const getTopic = await getTopicApi(currentArray, tomorrowArray);
-    setTopic(getTopic[0] ? getTopic[0].name : '');
+    const getTopic = await getTopicByDateApi(currentArray, tomorrowArray);
+    setTopic(getTopic[0] ? (getTopic[0].name as string) : '');
     setTopicId(getTopic[0] ? getTopic[0].id : 0);
   }, [currentArray, setTopicId, tomorrowArray]);
 
@@ -58,5 +58,6 @@ const Container = styled.div`
     font-weight: bold;
     margin-top: 15px;
     margin-bottom: 50px;
+    line-height: 1.3;
   }
 `;
