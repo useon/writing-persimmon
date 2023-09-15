@@ -1,9 +1,14 @@
 import { styled } from 'styled-components';
 
-import { CommentType } from '@/types/postType';
 import { calculateHoursAgo } from '@/utils/calculateHoursAgo';
 
-const PostComment = ({ comment_content, comment_user_id, created_at }: CommentType) => {
+interface Props {
+  comment_content: string;
+  comment_user_id: string;
+  created_at: string;
+}
+
+const PostComment = ({ comment_content, comment_user_id, created_at }: Props) => {
   return (
     <Comment>
       <UserId>{comment_user_id}</UserId>
