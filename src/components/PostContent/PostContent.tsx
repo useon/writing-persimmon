@@ -8,48 +8,64 @@ import { CommentType, PostType } from '@/types/postType';
 import { calculateHoursAgo } from '@/utils/calculateHoursAgo';
 
 interface Props {
-  postData: PostType;
+  title: string;
+  topic?: string;
+  user_id: string;
+  issue?: 'today' | 'free';
+  like: number;
+  view?: number;
+  content: string;
+  created_at: string;
+  comments: CommentType[] | {}[];
 }
 
-const PostContent = ({ postData }: Props) => {
+const PostContent = ({
+  title,
+  topic,
+  user_id,
+  issue,
+  like,
+  view,
+  content,
+  created_at,
+  comments,
+}: Props) => {
   return (
     <Main>
       <Container>
         <Header>
           <TitleWrapper>
-            <H1>{postData.title}</H1>
-            <TodayTitle>{postData.topic}</TodayTitle>
+            <H1>{title}</H1>
+            <TodayTitle>{topic}</TodayTitle>
           </TitleWrapper>
           <Info>
-            <AuthorName>{postData.user_id}</AuthorName>
-            <AuthorTime>{calculateHoursAgo(postData.created_at)}</AuthorTime>
+            <AuthorName>{user_id}</AuthorName>
+            <AuthorTime>{calculateHoursAgo(created_at)}</AuthorTime>
           </Info>
           <TagWrapper>
-            <Tag issue={postData.issue}>
-              {postData.issue === 'today' ? '오늘의 주제' : '자유 주제'}
-            </Tag>
+            <Tag issue={issue}>{issue === 'today' ? '오늘의 주제' : '자유 주제'}</Tag>
           </TagWrapper>
         </Header>
         <Body>
-          <Text dangerouslySetInnerHTML={{ __html: postData.content }}></Text>
+          <Text dangerouslySetInnerHTML={{ __html: content }}></Text>
           <UserAction>
             <Stat>
               <li>
                 <span>좋아요</span>
-                <span>{postData.like}</span>
+                <span>{like}</span>
               </li>
               <li>
                 <span>댓글</span>
-                <span>{postData.comments.length}</span>
+                <span>{comments.length}</span>
               </li>
               <li>
                 <span>조회</span>
-                <span>{postData.view}</span>
+                <span>{view}</span>
               </li>
             </Stat>
             <section>
               <header>
-                <h4>댓글 {postData.comments.length}</h4>
+                <h4>댓글 {comments.length}</h4>
               </header>
               <form>
                 <CommentTextarea
@@ -62,7 +78,7 @@ const PostContent = ({ postData }: Props) => {
                   <Button color='default'>작성</Button>
                 </ButtonArea>
               </form>
-              <PostComments comments={postData.comments as CommentType[]} />
+              <PostComments comments={comments as CommentType[]} />
             </section>
           </UserAction>
         </Body>
