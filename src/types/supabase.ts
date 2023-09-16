@@ -28,74 +28,88 @@ export interface Database {
   };
   public: {
     Tables: {
-      post: {
-        Row: {
-          comment_id: number;
-          content: string;
-          created_at: string;
-          id: number;
-          like: number;
-          title: string;
-          topic: string;
-          topic_id: number;
-          type: string;
-          user_id: string;
-        };
-        Insert: {
-          comment_id?: number | null;
-          content?: string | null;
-          created_at?: string;
-          id?: number;
-          like?: number | null;
-          title?: string | null;
-          topic?: string | null;
-          topic_id?: number | null;
-          type?: string | null;
-          user_id?: string | null;
-        };
-        Update: {
-          comment_id?: number | null;
-          content?: string | null;
-          created_at?: string;
-          id?: number;
-          like?: number | null;
-          title?: string | null;
-          topic?: string | null;
-          topic_id?: number | null;
-          type?: string | null;
-          user_id?: string | null;
-        };
-        Relationships: [];
-      };
       comment: {
         Row: {
-          post_id: number;
+          comment_content: string | null;
+          comment_user_id: string | null;
           created_at: string;
           id: number;
-          comment_user_id: string;
-          comment_content: string;
+          post_id: number | null;
         };
         Insert: {
-          post_id?: number | null;
+          comment_content?: string | null;
+          comment_user_id?: string | null;
           created_at?: string;
           id?: number;
-          comment_user_id?: string | null;
-          comment_content?: string | null;
+          post_id?: number | null;
         };
         Update: {
-          post_id?: number | null;
+          comment_content?: string | null;
+          comment_user_id?: string | null;
           created_at?: string;
           id?: number;
-          comment_user_id?: string | null;
-          comment_content?: string | null;
+          post_id?: number | null;
         };
-        Relationships: [];
+        Relationships: [
+          {
+            foreignKeyName: 'comment_post_id_fkey';
+            columns: ['post_id'];
+            referencedRelation: 'post';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
+      post: {
+        Row: {
+          content: string | null;
+          created_at: string;
+          id: number;
+          issue: string | null;
+          like: number | null;
+          title: string | null;
+          topic: string | null;
+          topic_id: number | null;
+          user_id: string | null;
+          view: number | null;
+        };
+        Insert: {
+          content?: string | null;
+          created_at?: string;
+          id?: number;
+          issue?: string | null;
+          like?: number | null;
+          title?: string | null;
+          topic?: string | null;
+          topic_id?: number | null;
+          user_id?: string | null;
+          view?: number | null;
+        };
+        Update: {
+          content?: string | null;
+          created_at?: string;
+          id?: number;
+          issue?: string | null;
+          like?: number | null;
+          title?: string | null;
+          topic?: string | null;
+          topic_id?: number | null;
+          user_id?: string | null;
+          view?: number | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'post_topic_id_fkey';
+            columns: ['topic_id'];
+            referencedRelation: 'topic';
+            referencedColumns: ['id'];
+          },
+        ];
       };
       topic: {
         Row: {
           created_at: string;
           id: number;
-          name: string;
+          name: string | null;
         };
         Insert: {
           created_at?: string;

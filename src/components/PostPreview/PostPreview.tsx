@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 import styled from 'styled-components';
@@ -9,6 +10,7 @@ import commentIcon from 'assets/images/comment-icon.svg';
 import likeIcon from 'assets/images/like-icon.svg';
 
 interface Props {
+  id: number;
   issue?: 'today' | 'free';
   title: string;
   user_id: string;
@@ -21,6 +23,7 @@ interface Props {
 }
 
 const PostPreview = ({
+  id,
   issue,
   title,
   user_id,
@@ -32,34 +35,37 @@ const PostPreview = ({
   type,
 }: Props) => {
   const elapsedTime = calculateHoursAgo(created_at);
+
   return (
     <Container>
-      <TitleArea>
-        <Title>{title}</Title>
-        {type === 'all' ? (
-          <Tag issue={issue}>
-            <span>{issue === 'today' ? '오늘의' : '자유'} 주제</span>
-          </Tag>
-        ) : null}
-        <PostInfoWrapper>
-          <div>
-            <span className='id'>{user_id}</span>
-            <span className='gray-text'>{elapsedTime}</span>
-          </div>
-          <span className='gray-text'>조회수 {view}회</span>
-        </PostInfoWrapper>
-      </TitleArea>
-      <Content>{content}</Content>
-      <div className='post-comment'>
-        <ReactionWrapper>
-          <Image src={likeIcon.src} alt='like' width={15} height={15} />
-          <span>{like}</span>
-        </ReactionWrapper>
-        <ReactionWrapper>
-          <Image src={commentIcon.src} alt='comment' width={15} height={15} />
-          <span>{comments.length}</span>
-        </ReactionWrapper>
-      </div>
+      <Link href={`/post/${id}`}>
+        <TitleArea>
+          <Title>{title}</Title>
+          {type === 'all' ? (
+            <Tag issue={issue}>
+              <span>{issue === 'today' ? '오늘의' : '자유'} 주제</span>
+            </Tag>
+          ) : null}
+          <PostInfoWrapper>
+            <div>
+              <span className='id'>{user_id}</span>
+              <span className='gray-text'>{elapsedTime}</span>
+            </div>
+            <span className='gray-text'>조회수 {view}회</span>
+          </PostInfoWrapper>
+        </TitleArea>
+        <Content>{content}</Content>
+        <div className='post-comment'>
+          <ReactionWrapper>
+            <Image src={likeIcon.src} alt='like' width={15} height={15} />
+            <span>{like}</span>
+          </ReactionWrapper>
+          <ReactionWrapper>
+            <Image src={commentIcon.src} alt='comment' width={15} height={15} />
+            <span>{comments.length}</span>
+          </ReactionWrapper>
+        </div>
+      </Link>
     </Container>
   );
 };
