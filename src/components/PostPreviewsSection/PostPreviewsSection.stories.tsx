@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 const TopicStory = () => {
   return (
     <PostPreviewsSection>
-      <TopicPart type='today' />
+      <TopicPart date='today' topic='주제' />
     </PostPreviewsSection>
   );
 };

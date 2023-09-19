@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import React from 'react';
 
 import styled from 'styled-components';
@@ -20,13 +21,24 @@ const LastTopicList = () => {
   return (
     <Container>
       <div className='last-topics'>
-        {data.map((topic) => (
-          <LastTopicWrapper key={topic.id}>
-            <LastTopicTitle>{topic.name}</LastTopicTitle>
-            <LastTopic color='var(--sub-color)'>{convertDate(topic.created_at)}</LastTopic>
-            <LastTopic>총 {topic.posts.length}개의 게시글</LastTopic>
-          </LastTopicWrapper>
-        ))}
+        {data.map((topic) => {
+          const date = convertDate(topic.created_at);
+          return (
+            <Link
+              key={topic.id}
+              href={{
+                pathname: `/last/${topic.id}`,
+                query: { date, id: topic.id },
+              }}
+            >
+              <LastTopicWrapper>
+                <LastTopicTitle>{topic.name.replace(/'|"/g, '')}</LastTopicTitle>
+                <LastTopic color='var(--sub-color)'>{date}</LastTopic>
+                <LastTopic>총 {topic.posts.length}개의 게시글</LastTopic>
+              </LastTopicWrapper>
+            </Link>
+          );
+        })}
       </div>
       <Pagination
         pageArray={pageArray}
@@ -43,11 +55,8 @@ export default LastTopicList;
 
 const Container = styled.div`
   min-height: 650px;
-  margin-top: 100px;
 
   .last-topics {
-    width: 1000px;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 80px 46px;
