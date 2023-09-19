@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import { getTopicByRangeApi } from '@/apis/topic/get-topic-api-by-range';
+import { getTopicByRangeApi } from '@/apis/topic/get-topic-by-range-api';
 import { TopicsDataType, TopicType } from '@/types/topicType';
 
 interface Props {
