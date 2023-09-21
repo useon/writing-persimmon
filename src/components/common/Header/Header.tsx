@@ -2,13 +2,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-import chevronDown from 'assets/images/chevron-down-icon.svg';
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
 import Button from '../Button/Button';
 import SelectDropdoqMenu from '@/components/SelectDropdoqMenu/SelectDropdoqMenu';
 import { dropdownAtom } from '@/stores/selectDropAtom';
+import chevronDown from 'assets/images/chevron-down-icon.svg';
 
 const Header = () => {
   const [show, setShow] = useAtom(dropdownAtom);
@@ -21,7 +21,7 @@ const Header = () => {
   ];
 
   const accounts: Array<{ href: string; key: string; name: string }> = [
-    { href: '/login', key: 'login', name: '로그인' },
+    { href: '/signin', key: 'signin', name: '로그인' },
     { href: '/signup', key: 'signup', name: '회원가입' },
   ];
 
