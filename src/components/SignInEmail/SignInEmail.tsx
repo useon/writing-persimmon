@@ -26,7 +26,7 @@ const FormInput = styled.input<{ position: 'top' | 'bottom' }>`
   border: 1px solid #b7b7b7;
   border-radius: ${(props) => (props.position === 'top' ? '4px 4px 0 0' : '0 0 4px 4px')};
   box-sizing: border-box;
-  font-size: 15px;
+  font-size: 1rem;
 
   &:focus {
     outline-color: var(--main-color);
@@ -43,11 +43,12 @@ const Button = styled.button`
   border: 1px solid var(--main-color);
   border-radius: 4px;
   background-color: var(--main-color);
+  font-size: 1rem;
   color: #ffff;
 `;
 
 const LinkWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
-  font-size: 14px;
+  font-size: 0.9rem;
 `;

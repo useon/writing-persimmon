@@ -38,7 +38,7 @@ const Form = styled.form`
 `;
 
 const Header = styled.p`
-  font-size: 18px;
+  font-size: 1.3rem;
   font-weight: 700;
 `;
 
@@ -55,7 +55,7 @@ const FormLebel = styled.label`
 
 const FormInput = styled.input`
   padding: 12px 7px;
-  font-size: 14px;
+  font-size: 0.9rem;
 
   &:focus {
     outline-color: var(--main-color);
@@ -73,11 +73,11 @@ const Button = styled.button<{ action: 'verify' | 'submit' }>`
   border-radius: 4px;
   background-color: ${(props) => (props.action === 'verify' ? '#ffff' : 'var(--main-color)')};
   color: ${(props) => (props.action === 'verify' ? 'var(--main-color)' : '#ffff')};
-  font-size: 17px;
+  font-size: 1.1rem;
 `;
 
 const InfoText = styled.p`
   margin-bottom: 12px;
   color: lightgrey;
-  font-size: 14px;
+  font-size: 0.88rem;
 `;
