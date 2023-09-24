@@ -20,7 +20,7 @@ const LastTopicsPage = () => {
             {filterState}
             <FilterDropDownIcon />
           </FilterButton>
-          <div className='list'>
+          <div className='filter-ul-wapper'>
             <FliterUl>
               <FilterLi>최신순</FilterLi>
               <FilterLi>과거순</FilterLi>
@@ -53,7 +53,7 @@ const SearchFilterWrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 50px;
 
-  #filter:hover > .list {
+  #filter:hover > .filter-ul-wapper {
     display: block;
   }
 `;
@@ -61,7 +61,7 @@ const SearchFilterWrapper = styled.div`
 const FilterWrapper = styled.div`
   position: relative;
 
-  .list {
+  .filter-ul-wapper {
     display: none;
     position: absolute;
     width: 110px;

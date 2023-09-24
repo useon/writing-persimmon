@@ -34,12 +34,12 @@ export const usePagination = ({ LIMIT, MAX_PAGE_COUNT }: Props) => {
       lastNum = lastPage;
     }
 
-    const arr = [];
+    const pageNumberArr = [];
     for (let i = firstNum; i <= lastNum; i++) {
-      arr.push(i);
+      pageNumberArr.push(i);
     }
 
-    setPageArray(arr);
+    setPageArray(pageNumberArr);
   }, [MAX_PAGE_COUNT, currentPage, LIMIT, totalCount]);
 
   const handlePrevClick = (type?: string) => {
