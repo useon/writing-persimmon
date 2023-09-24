@@ -19,6 +19,24 @@ const config: StorybookConfig = {
   webpackFinal: async (config: any) => {
     config.resolve.alias['@'] = path.resolve(__dirname, '../src/');
     config.resolve.alias['assets'] = path.resolve(__dirname, '../public/assets/');
+
+    const imageRule = config.module?.rules?.find((rule) => {
+      const test = (rule as { test: RegExp }).test;
+
+      if (!test) {
+        return false;
+      }
+
+      return test.test(".svg");
+    }) as { [key: string]: any };
+
+    imageRule.exclude = /\.svg$/;
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+
     return config;
   },
 };

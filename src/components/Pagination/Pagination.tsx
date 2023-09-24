@@ -4,6 +4,11 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import FirstGoIcon from 'assets/images/first-go-icon.svg';
+import LastGoIcon from 'assets/images/last-go-icon.svg';
+import NextIcon from 'assets/images/next-icon.svg';
+import PrevIcon from 'assets/images/prev-icon.svg';
+
 interface Props {
   pageArray: any[];
   handlePrevClick: (type?: string) => void;
@@ -22,52 +27,10 @@ const Pagination = ({
   return (
     <PageButtonWrapper>
       <ArrowButton onClick={() => handlePrevClick('first')}>
-        <svg
-          viewBox='0 0 24 24'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-          transform='rotate(180)'
-        >
-          <g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
-          <g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
-          <g id='SVGRepo_iconCarrier'>
-            {' '}
-            <g id='Arrow / Chevron_Right_Duo'>
-              {' '}
-              <path
-                id='Vector'
-                d='M13 8L17 12L13 16M7 8L11 12L7 16'
-                stroke='#5c5c5c'
-                strokeWidth='1.176'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              ></path>{' '}
-            </g>{' '}
-          </g>
-        </svg>
+        <FirstGoIcon />
       </ArrowButton>
       <ArrowButton onClick={() => handlePrevClick()}>
-        <svg
-          viewBox='0 0 24 24'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-          stroke='#ffffff'
-          strokeWidth='1.176'
-          transform='rotate(0)'
-        >
-          <g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
-          <g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
-          <g id='SVGRepo_iconCarrier'>
-            {' '}
-            <rect width='24' height='24' fill='white'></rect>{' '}
-            <path
-              d='M14.5 17L9.5 12L14.5 7'
-              stroke='#5c5c5c'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            ></path>{' '}
-          </g>
-        </svg>
+        <PrevIcon />
       </ArrowButton>
       {pageArray.map((pageIndex) => (
         <PageButton
@@ -79,47 +42,10 @@ const Pagination = ({
         </PageButton>
       ))}
       <ArrowButton onClick={() => handleNextClick()}>
-        <svg
-          viewBox='0 0 24 24'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-          stroke='#ffffff'
-          strokeWidth='1.176'
-          transform='rotate(180)'
-        >
-          <g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
-          <g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
-          <g id='SVGRepo_iconCarrier'>
-            {' '}
-            <rect width='24' height='24' fill='white'></rect>{' '}
-            <path
-              d='M14.5 17L9.5 12L14.5 7'
-              stroke='#5c5c5c'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            ></path>{' '}
-          </g>
-        </svg>
+        <NextIcon />
       </ArrowButton>
       <ArrowButton onClick={() => handleNextClick('last')}>
-        <svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-          <g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
-          <g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
-          <g id='SVGRepo_iconCarrier'>
-            {' '}
-            <g id='Arrow / Chevron_Right_Duo'>
-              {' '}
-              <path
-                id='Vector'
-                d='M13 8L17 12L13 16M7 8L11 12L7 16'
-                stroke='#5c5c5c'
-                strokeWidth='1.176'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              ></path>{' '}
-            </g>{' '}
-          </g>
-        </svg>
+        <LastGoIcon />
       </ArrowButton>
     </PageButtonWrapper>
   );

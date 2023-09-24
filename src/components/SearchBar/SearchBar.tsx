@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import SearchIcon from 'assets/images/search-icon.svg';
+
 interface Props {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
@@ -23,31 +25,7 @@ const SearchBar = ({ value, setValue, size, placeholder }: Props) => {
       />
       <SearchButtonWrapper size={size}>
         <SearchButton>
-          <svg
-            viewBox='0 0 24.00 24.00'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-            width={size === 'normal' ? '27px' : '36px'}
-          >
-            <g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
-            <g
-              id='SVGRepo_tracerCarrier'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              stroke='#CCCCCC'
-              strokeWidth='0.096'
-            ></g>
-            <g id='SVGRepo_iconCarrier'>
-              {' '}
-              <path
-                d='M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z'
-                stroke='#5c5c5c'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              ></path>{' '}
-            </g>
-          </svg>
+          <SearchIcon width={size === 'normal' ? '27px' : '36px'} />
         </SearchButton>
       </SearchButtonWrapper>
     </Container>

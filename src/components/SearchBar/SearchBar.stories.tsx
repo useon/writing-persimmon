@@ -30,12 +30,7 @@ export const LastTopicSearch: Story = {
 const TotalSearchStory = () => {
   const [value, setValue] = useState('');
   return (
-    <SearchBar
-      value={value}
-      setValue={setValue}
-      size='normal'
-      placeholder='검색어를 입력해 주세요.'
-    />
+    <SearchBar value={value} setValue={setValue} size='big' placeholder='검색어를 입력해 주세요.' />
   );
 };
 
