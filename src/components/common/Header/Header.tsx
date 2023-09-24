@@ -2,13 +2,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-import chevronDown from 'assets/images/chevron-down-icon.svg';
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
 import Button from '../Button/Button';
 import SelectDropdoqMenu from '@/components/SelectDropdoqMenu/SelectDropdoqMenu';
 import { dropdownAtom } from '@/stores/selectDropAtom';
+import chevronDown from 'assets/images/chevron-down-icon.svg';
 
 const Header = () => {
   const [show, setShow] = useAtom(dropdownAtom);
@@ -37,7 +37,12 @@ const Header = () => {
             <Link href='/'>글감이</Link>
           </NavbarMenuItem>
           {links.map(({ href, key, name }) => {
-            const isActive = href === pathname;
+            let isActive = false;
+            if (pathname === pathname.replace(/[0-9]/g, '')) {
+              isActive = href === pathname;
+            } else {
+              isActive = href === pathname.replace(/[0-9]/g, '').slice(0, -1);
+            }
             return (
               <NavbarMenuItem key={key}>
                 <Link href={href} className={`link ${isActive ? 'active' : ''}`}>

@@ -11,7 +11,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: 'today',
+    date: 'today',
     topic: '주제',
   },
 };

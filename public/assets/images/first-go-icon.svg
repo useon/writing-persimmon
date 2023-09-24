@@ -1,0 +1,23 @@
+<svg
+  viewBox='0 0 24 24'
+  fill='none'
+  xmlns='http://www.w3.org/2000/svg'
+  transform='rotate(180)'
+>
+  <g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
+  <g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
+  <g id='SVGRepo_iconCarrier'>
+    {' '}
+    <g id='Arrow / Chevron_Right_Duo'>
+      {' '}
+      <path
+        id='Vector'
+        d='M13 8L17 12L13 16M7 8L11 12L7 16'
+        stroke='#5c5c5c'
+        strokeWidth='1.176'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      ></path>{' '}
+    </g>{' '}
+  </g>
+</svg>

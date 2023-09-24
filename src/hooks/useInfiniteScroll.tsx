@@ -49,10 +49,12 @@ export const useInfiniteScroll = ({ topicId, setIsInView }: Props) => {
     const getPost = async () => {
       const posts = await fetchPosts(0);
       console.log(posts);
-      setLoadedPosts(posts);
+      setLoadedPosts(posts as PostType[]);
     };
-    getPost();
-  }, [fetchPosts]);
+    if (topicId !== Infinity) {
+      getPost();
+    }
+  }, [fetchPosts, topicId]);
 
   const scrollInformation = {
     offset,
