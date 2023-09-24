@@ -37,7 +37,12 @@ const Header = () => {
             <Link href='/'>글감이</Link>
           </NavbarMenuItem>
           {links.map(({ href, key, name }) => {
-            const isActive = href === pathname;
+            let isActive = false;
+            if (pathname === pathname.replace(/[0-9]/g, '')) {
+              isActive = href === pathname;
+            } else {
+              isActive = href === pathname.replace(/[0-9]/g, '').slice(0, -1);
+            }
             return (
               <NavbarMenuItem key={key}>
                 <Link href={href} className={`link ${isActive ? 'active' : ''}`}>
