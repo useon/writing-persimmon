@@ -13,7 +13,6 @@ interface Props {
 }
 
 const TopicPart = ({ date, topic }: Props) => {
-  console.log('date : ', date, topic);
   return (
     <Container>
       <span className='topic-type '>{date === 'today' ? '오늘' : date}의 글감</span>
