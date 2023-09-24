@@ -10,12 +10,12 @@ import { usePagination } from '@/hooks/usePagination';
 import { convertDate } from '@/utils/convertDate';
 
 const LastTopicList = () => {
-  const limit = 12;
+  const LIMIT = 12;
   const MAX_PAGE_COUNT = 5;
 
   const { pageArray, data, handlePrevClick, handleNextClick, currentPage, setCurrentPage } =
     usePagination({
-      limit,
+      LIMIT,
       MAX_PAGE_COUNT,
     });
   return (

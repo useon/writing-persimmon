@@ -64,11 +64,11 @@ const PostPreviewsSection = ({ children, topicId }: Props) => {
 export default PostPreviewsSection;
 
 const Container = styled.div`
-  width: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 1000px;
   margin: 0 auto;
 
   .post-wrapper {

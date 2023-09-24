@@ -4,32 +4,32 @@ import { getTopicByRangeApi } from '@/apis/topic/get-topic-by-range-api';
 import { TopicsDataType, TopicType } from '@/types/topicType';
 
 interface Props {
-  limit: number;
+  LIMIT: number;
   MAX_PAGE_COUNT: number;
 }
 
-export const usePagination = ({ limit, MAX_PAGE_COUNT }: Props) => {
+export const usePagination = ({ LIMIT, MAX_PAGE_COUNT }: Props) => {
   const [data, setData] = useState<TopicType[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [pageArray, setPageArray] = useState<number[]>([]);
   const [totalCount, setTotalCount] = useState(0);
 
   const getTopicByRange = useCallback(async () => {
-    const from = currentPage * limit;
-    let to = from + limit - 1;
+    const from = currentPage * LIMIT;
+    let to = from + LIMIT - 1;
     if (totalCount !== 0) {
-      to = from + limit - 1 > totalCount ? totalCount : from + limit - 1;
+      to = from + LIMIT - 1 > totalCount ? totalCount : from + LIMIT - 1;
     }
     const topicData = await getTopicByRangeApi(from, to);
     const { topics, count } = topicData as TopicsDataType;
     setData(topics);
     setTotalCount(count);
-  }, [currentPage, limit, totalCount]);
+  }, [currentPage, LIMIT, totalCount]);
 
   const getPageArray = useCallback(() => {
     const firstNum = currentPage - (currentPage % MAX_PAGE_COUNT) + 1;
     let lastNum = currentPage - (currentPage % MAX_PAGE_COUNT) + MAX_PAGE_COUNT;
-    const lastPage = Math.ceil(totalCount / limit);
+    const lastPage = Math.ceil(totalCount / LIMIT);
     if (lastNum > lastPage) {
       lastNum = lastPage;
     }
@@ -40,7 +40,7 @@ export const usePagination = ({ limit, MAX_PAGE_COUNT }: Props) => {
     }
 
     setPageArray(arr);
-  }, [MAX_PAGE_COUNT, currentPage, limit, totalCount]);
+  }, [MAX_PAGE_COUNT, currentPage, LIMIT, totalCount]);
 
   const handlePrevClick = (type?: string) => {
     if (currentPage - 1 < 0) return;
@@ -53,7 +53,7 @@ export const usePagination = ({ limit, MAX_PAGE_COUNT }: Props) => {
   };
 
   const handleNextClick = (type?: string) => {
-    const lastPage = Math.ceil(totalCount / limit);
+    const lastPage = Math.ceil(totalCount / LIMIT);
     if (currentPage + 1 >= lastPage) return;
 
     if (type === 'last') {
