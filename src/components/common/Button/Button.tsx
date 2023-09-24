@@ -10,7 +10,6 @@ interface ButtonStyleProps {
   height?: number;
   padding?: string;
   weight?: string;
-  url?: any;
   size?: number;
   onClick?: () => void;
 }
@@ -28,11 +27,10 @@ const Button = ({
   padding,
   children,
   weight = 'bold',
-  url,
   size,
   onClick,
 }: ButtonProps) => {
-  const props = { type, color, radius, width, height, padding, weight, url, size };
+  const props = { type, color, radius, width, height, padding, weight, size };
   return (
     <StyledButton {...props} className={[type, color].join(' ')} onClick={onClick}>
       {children}
@@ -64,25 +62,15 @@ const StyledButton = styled.button<ButtonStyleProps>`
     background-color: #ebebeb;
   }
 
-  &.write:before {
-    display: block;
-    float: left;
-    width: 15px;
-    height: 15px;
-    margin: 0 6px 0 0;
-    background: ${(props) => `url(${props.url}) no-repeat`};
-    background-size: contain;
-    content: '';
+  &.write {
+    display: flex;
+    margin: 0 auto;
+    gap: 6px;
   }
 
-  &.select:after {
-    display: block;
-    float: right;
-    width: 15px;
-    height: 15px;
-    margin: 0 0 0 6px;
-    background: ${(props) => `url(${props.url}) no-repeat`};
-    background-size: contain;
-    content: '';
+  &.select {
+    display: flex;
+    margin: 0 auto;
+    gap: 6px;
   }
 `;

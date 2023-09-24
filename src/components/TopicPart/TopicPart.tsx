@@ -5,7 +5,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Button from '../common/Button/Button';
-import writeIcon from 'assets/images/write-icon.svg';
+import WriteIcon from 'assets/images/write-icon.svg';
 
 interface Props {
   date: string;
@@ -17,8 +17,8 @@ const TopicPart = ({ date, topic }: Props) => {
     <Container>
       <span className='topic-type '>{date === 'today' ? '오늘' : date}의 글감</span>
       <h1 className='topic'>“ {topic.replace(/'|"/g, '')} ”</h1>
-      <Button type='write' url={writeIcon.src} padding='14px 17px' color='default' size={0.8}>
-        이 글감으로 글쓰기
+      <Button type='write' padding='14px 17px' color='default' size={0.8}>
+        <WriteIcon width={15} />이 글감으로 글쓰기
       </Button>
     </Container>
   );
