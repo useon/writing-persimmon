@@ -21,7 +21,7 @@ const Header = () => {
   ];
 
   const accounts: Array<{ href: string; key: string; name: string }> = [
-    { href: '/login', key: 'login', name: '로그인' },
+    { href: '/signin', key: 'signin', name: '로그인' },
     { href: '/signup', key: 'signup', name: '회원가입' },
   ];
 
