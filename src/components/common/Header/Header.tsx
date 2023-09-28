@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import Button from '../Button/Button';
 import SelectDropdoqMenu from '@/components/SelectDropdoqMenu/SelectDropdoqMenu';
 import { dropdownAtom } from '@/stores/selectDropAtom';
-import chevronDown from 'assets/images/chevron-down-icon.svg';
+import ChevronDown from 'assets/images/chevron-down-icon.svg';
 
 const Header = () => {
   const [show, setShow] = useAtom(dropdownAtom);
@@ -37,11 +37,13 @@ const Header = () => {
             <Link href='/'>글감이</Link>
           </NavbarMenuItem>
           {links.map(({ href, key, name }) => {
-            let isActive = false;
-            if (pathname === pathname.replace(/[0-9]/g, '')) {
-              isActive = href === pathname;
-            } else {
-              isActive = href === pathname.replace(/[0-9]/g, '').slice(0, -1);
+            let isActive = href === pathname;
+            if (pathname) {
+              if (pathname === pathname.replace(/[0-9]/g, '')) {
+                isActive = href === pathname;
+              } else {
+                isActive = href === pathname.replace(/[0-9]/g, '').slice(0, -1);
+              }
             }
             return (
               <NavbarMenuItem key={key}>
@@ -64,10 +66,10 @@ const Header = () => {
               radius='4px'
               type='select'
               weight='normal'
-              url={chevronDown.src}
               onClick={onSelectClick}
             >
               글쓰기
+              <ChevronDown />
             </Button>
             {show ? <SelectDropdoqMenu /> : null}
           </NavbarMenuItem>

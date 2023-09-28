@@ -6,8 +6,8 @@ import styled from 'styled-components';
 
 import { CommentType } from '@/types/postType';
 import { calculateHoursAgo } from '@/utils/calculateHoursAgo';
-import commentIcon from 'assets/images/comment-icon.svg';
-import likeIcon from 'assets/images/like-icon.svg';
+import CommentIcon from 'assets/images/comment-icon.svg';
+import LikeIcon from 'assets/images/like-icon.svg';
 
 interface Props {
   id: number;
@@ -57,11 +57,11 @@ const PostPreview = ({
         <Content>{content}</Content>
         <div className='post-comment'>
           <ReactionWrapper>
-            <Image src={likeIcon.src} alt='like' width={15} height={15} />
+            <LikeIcon width={15} />
             <span>{like}</span>
           </ReactionWrapper>
           <ReactionWrapper>
-            <Image src={commentIcon.src} alt='comment' width={15} height={15} />
+            <CommentIcon width={15} />
             <span>{comments.length}</span>
           </ReactionWrapper>
         </div>

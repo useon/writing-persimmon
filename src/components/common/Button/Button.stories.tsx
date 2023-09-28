@@ -1,5 +1,5 @@
 import Button from './Button';
-import writeIcon from 'assets/images/write-icon.svg';
+import WriteIcon from 'assets/images/write-icon.svg';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -12,8 +12,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Write: Story = {
   render: () => (
-    <Button type='write' url={writeIcon.src} padding='10px 13px' color='default'>
-      이 글감으로 글쓰기
+    <Button type='write' padding='10px 13px' color='default'>
+      <WriteIcon width={15} />이 글감으로 글쓰기
     </Button>
   ),
 };
