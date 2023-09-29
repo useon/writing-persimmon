@@ -4,12 +4,12 @@ import Link from 'next/link';
 
 import styled from 'styled-components';
 
-import SignUpEmail from '../SignUpEmail/SignUpEmail';
+import SignUpWithID from '../SignUpWithID/SignUpWithID';
 
 const SignUpContent = () => {
   return (
     <Container>
-      <SignUpEmail />
+      <SignUpWithID />
       <SignInWrapper>
         <p>이미 아이디가 있으신가요?</p>
         <Link href={'/signin'}>로그인</Link>

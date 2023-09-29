@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-const SignUpEmail = () => {
+const SignUpWithID = () => {
   return (
     <Form>
       <Header>이메일로 회원가입</Header>
@@ -31,7 +31,7 @@ const SignUpEmail = () => {
   );
 };
 
-export default SignUpEmail;
+export default SignUpWithID;
 
 const Form = styled.form`
   margin-bottom: 20px;
