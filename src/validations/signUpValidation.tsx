@@ -1,7 +1,8 @@
-import { REGEX_ID, REGEX_PASSWORD } from '@/constants/regex';
+import { REGEX_EMAIL, REGEX_PASSWORD } from '@/constants/regex';
 
-export const idValidation = (value: string) => {
-  if (value !== 'undefined' && REGEX_ID.test(value)) {
+export const emailValidation = (value: string) => {
+  const id = value.slice(0, value.indexOf('@'));
+  if (id !== 'undefined' && REGEX_EMAIL.test(value)) {
     return true;
   } else {
     return false;
