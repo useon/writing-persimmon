@@ -6,8 +6,8 @@ export const signUpApi = async (email: string, password: string) => {
     password: password,
   });
   if (error) {
-    return error;
+    return false;
   } else {
-    return data;
+    return true;
   }
 };

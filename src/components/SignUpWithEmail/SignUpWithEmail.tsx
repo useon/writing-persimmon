@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { styled } from 'styled-components';
 
+import SignUpModal from '../SignUpModal/SignUpModal';
 import { signUpApi } from '@/apis/auth/sign-up';
 import {
   emailValidation,
@@ -18,6 +19,7 @@ const SignUpWithEmail = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [passwordCheckError, setPasswordCheckError] = useState('');
+  const [signUpCompleted, setSignUpCompleted] = useState('');
 
   const controllerState = async (type: string, value: string) => {
     if (type === 'email') {
@@ -67,9 +69,15 @@ const SignUpWithEmail = () => {
     }
   };
 
-  const handleOnClick = () => {
+  const handleOnClick = async () => {
     if (emailError === 'valid' && passwordError === 'valid' && passwordCheckError === 'valid') {
       signUpApi(formInput.email, formInput.password);
+      const isSuccess = await signUpApi(formInput.email, formInput.password);
+      if (isSuccess) {
+        setSignUpCompleted('completed');
+      } else {
+        setSignUpCompleted('error');
+      }
     } else {
       if (emailError === '') {
         setEmailError('empty');
@@ -132,6 +140,8 @@ const SignUpWithEmail = () => {
           회원가입하기
         </Button>
       </ButtonWrapper>
+      {signUpCompleted === 'error' && <ErrorText>이미 가입된 계정입니다.</ErrorText>}
+      {signUpCompleted === 'completed' && <SignUpModal />}
     </Form>
   );
 };
