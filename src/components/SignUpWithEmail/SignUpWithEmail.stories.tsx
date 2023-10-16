@@ -1,10 +1,10 @@
-import SignUpEmail from './SignUpEmail';
+import SignUpWithEmail from './SignUpWithEmail';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof SignUpEmail> = {
-  title: 'Component/SignUpEmail',
-  component: SignUpEmail,
+const meta: Meta<typeof SignUpWithEmail> = {
+  title: 'Component/SignUpWithEmail',
+  component: SignUpWithEmail,
   decorators: [
     (Story) => (
       <div style={{ maxWidth: '320px' }}>
@@ -17,7 +17,7 @@ const meta: Meta<typeof SignUpEmail> = {
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => <SignUpEmail />,
+  render: () => <SignUpWithEmail />,
 };
 
 export default meta;
