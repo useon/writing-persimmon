@@ -16,95 +16,60 @@ const SignUpWithEmail = () => {
     password: '',
     passwordCheck: '',
   });
-  const [formError, setFormError] = useState({
-    email: '',
-    password: '',
-    passwordCheck: '',
-  });
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordCheckError, setPasswordCheckError] = useState('');
   const [signUpCompleted, setSignUpCompleted] = useState('');
 
-  const changeEmailState = (value: string) => {
-    if (value === '') {
-      setFormError({
-        ...formError,
-        email: 'empty',
-      });
-    } else {
-      const isEmailPass = emailValidation(value);
-      isEmailPass &&
-        setFormInput({
-          ...formInput,
-          email: value,
-        });
-      setFormError({
-        ...formError,
-        email: isEmailPass ? 'valid' : 'invalid',
-      });
+  const controllerState = async (type: string, value: string) => {
+    switch (type) {
+      case 'email':
+        const emailState = value === '' ? 'empty' : emailValidation(value) ? 'valid' : 'invalid';
+        setEmailError(emailState);
+        if (emailState === 'valid') {
+          setFormInput({
+            ...formInput,
+            email: value,
+          });
+        }
+        break;
+      case 'password':
+        const passwordState =
+          value === '' ? 'empty' : passwordValidation(value) ? 'valid' : 'invalid';
+        setPasswordError(passwordState);
+        if (passwordState === 'valid') {
+          setFormInput({
+            ...formInput,
+            password: value,
+          });
+        }
+        break;
+      case 'passwordCheck':
+        const passwordCheckState =
+          value === ''
+            ? 'empty'
+            : passwordCheckValidation(formInput.password, value)
+            ? 'valid'
+            : 'invalid';
+        if (passwordCheckState === 'valid') {
+          setFormInput({
+            ...formInput,
+            passwordCheck: value,
+          });
+        }
+        break;
     }
   };
 
-  const changePasswordState = (value: string) => {
-    if (value === '') {
-      setFormError({
-        ...formError,
-        password: 'empty',
-      });
-    } else {
-      const isPasswordPass = passwordValidation(value);
-      isPasswordPass &&
-        setFormInput({
-          ...formInput,
-          password: value,
-        });
-      setFormError({
-        ...formError,
-        password: isPasswordPass ? 'valid' : 'invalid',
-      });
-    }
-  };
-
-  const changePasswordCheckState = (value: string) => {
-    if (value === '') {
-      setFormError({
-        ...formError,
-        passwordCheck: 'empty',
-      });
-    } else {
-      const isPasswordCheckPass = passwordCheckValidation(formInput.password, value);
-      isPasswordCheckPass &&
-        setFormInput({
-          ...formInput,
-          passwordCheck: value,
-        });
-      setFormError({
-        ...formError,
-        passwordCheck: isPasswordCheckPass ? 'valid' : 'invalid',
-      });
-    }
-  };
-
-  const changeErrorState = (target: 'email' | 'password' | 'passwordCheck') => {
-    if (formError[target] === '') {
-      setFormError({
-        ...formError,
-        [target]: 'empty',
-      });
-    }
-  };
-
-  const handleClick = async () => {
-    if (
-      formError.email === 'valid' &&
-      formError.password === 'valid' &&
-      formError.passwordCheck === 'valid'
-    ) {
+  const handleOnClick = async () => {
+    if (emailError === 'valid' && passwordError === 'valid' && passwordCheckError === 'valid') {
+      signUpApi(formInput.email, formInput.password);
       const isSuccess = await signUpApi(formInput.email, formInput.password);
       isSuccess ? setSignUpCompleted('completed') : setSignUpCompleted('error');
-    } else {
-      changeErrorState('email');
-      changeErrorState('password');
-      changeErrorState('passwordCheck');
     }
+    if (emailError === '') setEmailError('empty');
+    if (passwordError === '') setPasswordError('empty');
+    if (passwordCheckError === '') setPasswordCheckError('empty');
   };
 
   return (
@@ -115,9 +80,12 @@ const SignUpWithEmail = () => {
           영문, 숫자 혹은 영문과 숫자를 조합한 5자 이상 16자 이하의 아이디를 가진 이메일을
           입력해주세요.
         </InfoText>
-        <FormInput placeholder='이메일' onBlur={(event) => changeEmailState(event.target.value)} />
-        {formError.email === 'empty' && <ErrorText>이메일은 필수 입력 항목입니다.</ErrorText>}
-        {formError.email === 'invalid' && <ErrorText>사용 불가능한 이메일입니다.</ErrorText>}
+        <FormInput
+          placeholder='이메일'
+          onBlur={(event) => controllerState('email', event.target.value)}
+        />
+        {emailError === 'empty' && <ErrorText>이메일은 필수 입력 항목입니다.</ErrorText>}
+        {emailError === 'invalid' && <ErrorText>사용 불가능한 이메일입니다.</ErrorText>}
       </FormItem>
       <FormItem>
         <FormLebel>비밀번호</FormLebel>
@@ -126,11 +94,11 @@ const SignUpWithEmail = () => {
         </InfoText>
         <FormInput
           type='password'
-          onBlur={(event) => changePasswordState(event.target.value)}
+          onBlur={(event) => controllerState('password', event.target.value)}
           placeholder='비밀번호'
         />
-        {formError.password === 'empty' && <ErrorText>비밀번호는 필수 입력 항목입니다.</ErrorText>}
-        {formError.password === 'invalid' && (
+        {passwordError === 'empty' && <ErrorText>비밀번호는 필수 입력 항목입니다.</ErrorText>}
+        {passwordError === 'invalid' && (
           <ErrorText>
             비밀번호는 영문, 숫자, 특수 문자를 포함하여 8자 이상 20자 이하 이어야 합니다.
           </ErrorText>
@@ -140,18 +108,16 @@ const SignUpWithEmail = () => {
         <FormLebel>비밀번호 확인</FormLebel>
         <FormInput
           type='password'
-          onBlur={(event) => changePasswordCheckState(event.target.value)}
+          onBlur={(event) => controllerState('passwordCheck', event.target.value)}
           placeholder='비밀번호 확인'
         />
-        {formError.passwordCheck === 'empty' && (
+        {passwordCheckError === 'empty' && (
           <ErrorText>확인을 위해 비밀번호를 한번 더 입력해주세요.</ErrorText>
         )}
-        {formError.passwordCheck === 'invalid' && (
-          <ErrorText>비밀번호가 일치하지 않습니다.</ErrorText>
-        )}
+        {passwordCheckError === 'invalid' && <ErrorText>비밀번호가 일치하지 않습니다.</ErrorText>}
       </FormItem>
       <ButtonWrapper>
-        <Button type='button' onClick={handleClick}>
+        <Button type='button' onClick={handleOnClick}>
           회원가입하기
         </Button>
       </ButtonWrapper>
@@ -187,7 +153,7 @@ const FormInput = styled.input`
 `;
 
 const ButtonWrapper = styled.div`
-  margin: 20px 0;
+  margin: 30px 0;
 `;
 
 const Button = styled.button`
