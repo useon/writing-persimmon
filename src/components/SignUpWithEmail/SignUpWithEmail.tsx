@@ -22,50 +22,42 @@ const SignUpWithEmail = () => {
   const [signUpCompleted, setSignUpCompleted] = useState('');
 
   const controllerState = async (type: string, value: string) => {
-    if (type === 'email') {
-      if (value === '') {
-        setEmailError('empty');
-      } else {
-        if (emailValidation(value)) {
+    switch (type) {
+      case 'email':
+        const emailState = value === '' ? 'empty' : emailValidation(value) ? 'valid' : 'invalid';
+        setEmailError(emailState);
+        if (emailState === 'valid') {
           setFormInput({
             ...formInput,
             email: value,
           });
-          setEmailError('valid');
-        } else {
-          setEmailError('invalid');
         }
-      }
-    }
-    if (type === 'password') {
-      if (value === '') {
-        setPasswordError('empty');
-      } else {
-        if (passwordValidation(value)) {
+        break;
+      case 'password':
+        const passwordState =
+          value === '' ? 'empty' : passwordValidation(value) ? 'valid' : 'invalid';
+        setPasswordError(passwordState);
+        if (passwordState === 'valid') {
           setFormInput({
             ...formInput,
             password: value,
           });
-          setPasswordError('valid');
-        } else {
-          setPasswordError('invalid');
         }
-      }
-    }
-    if (type === 'passwordCheck') {
-      if (value === '') {
-        setPasswordCheckError('empty');
-      } else {
-        if (passwordCheckValidation(formInput.password, value)) {
+        break;
+      case 'passwordCheck':
+        const passwordCheckState =
+          value === ''
+            ? 'empty'
+            : passwordCheckValidation(formInput.password, value)
+            ? 'valid'
+            : 'invalid';
+        if (passwordCheckState === 'valid') {
           setFormInput({
             ...formInput,
             passwordCheck: value,
           });
-          setPasswordCheckError('valid');
-        } else {
-          setPasswordCheckError('invalid');
         }
-      }
+        break;
     }
   };
 
@@ -73,22 +65,11 @@ const SignUpWithEmail = () => {
     if (emailError === 'valid' && passwordError === 'valid' && passwordCheckError === 'valid') {
       signUpApi(formInput.email, formInput.password);
       const isSuccess = await signUpApi(formInput.email, formInput.password);
-      if (isSuccess) {
-        setSignUpCompleted('completed');
-      } else {
-        setSignUpCompleted('error');
-      }
-    } else {
-      if (emailError === '') {
-        setEmailError('empty');
-      }
-      if (passwordError === '') {
-        setPasswordError('empty');
-      }
-      if (passwordCheckError === '') {
-        setPasswordCheckError('empty');
-      }
+      isSuccess ? setSignUpCompleted('completed') : setSignUpCompleted('error');
     }
+    if (emailError === '') setEmailError('empty');
+    if (passwordError === '') setPasswordError('empty');
+    if (passwordCheckError === '') setPasswordCheckError('empty');
   };
 
   return (

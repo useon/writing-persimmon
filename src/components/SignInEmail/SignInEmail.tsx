@@ -28,8 +28,8 @@ const SignInEmail = () => {
   };
 
   const loginResult = async (email: string, password: string) => {
-    const isLoginSuccess = signInApi(email, password);
-    if (await isLoginSuccess) {
+    const isLoginSuccess = await signInApi(email, password);
+    if (isLoginSuccess) {
       router.push('/');
     } else {
       setSignInError({
